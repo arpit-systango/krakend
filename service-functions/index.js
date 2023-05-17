@@ -42,6 +42,32 @@ app.get('/percentage/:num/:percentage', async (req, res) => {
   res.json({ result });
 });
 
+// Square root operation
+app.get('/sqrt/:num', (req, res) => {
+  const num = parseFloat(req.params.num);
+  if (isNaN(num)) {
+    res.status(400).json({ error: 'Invalid number' });
+  } else if (num < 0) {
+    res.status(400).json({ error: 'Number must be non-negative' });
+  } else {
+    const result = Math.sqrt(num);
+    res.json({ result });
+  }
+});
+
+// Logarithm operation
+app.get('/log/:num', (req, res) => {
+  const num = parseFloat(req.params.num);
+  if (isNaN(num)) {
+    res.status(400).json({ error: 'Invalid number' });
+  } else if (num <= 0) {
+    res.status(400).json({ error: 'Number must be positive' });
+  } else {
+    const result = Math.log(num);
+    res.json({ result });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`service-functions microservice running on port ${PORT}`);
 });

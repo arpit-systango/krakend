@@ -17,21 +17,15 @@
   "endpoints": [
     {
       "endpoint": "/addition/{num1}/{num2}",
-      "method": "GET",
-      "output_encoding": "json",
       "backend": [
         {
           "url_pattern": "/add/{num1}/{num2}",
-          "method": "GET",
-          "encoding": "json",
           "host": ["addition:3001"]
         }
       ]
     },
     {
       "endpoint": "/subtraction/{num1}/{num2}",
-      "method": "GET",
-      "output_encoding": "json",
       "backend": [
         {
           "url_pattern": "/subtract/{num1}/{num2}",
@@ -41,8 +35,6 @@
     },
     {
       "endpoint": "/multiplication/{num1}/{num2}",
-      "method": "GET",
-      "output_encoding": "json",
       "backend": [
         {
           "url_pattern": "/multiply/{num1}/{num2}",
@@ -52,8 +44,6 @@
     },
     {
       "endpoint": "/division/{num1}/{num2}",
-      "method": "GET",
-      "output_encoding": "json",
       "backend": [
         {
           "url_pattern": "/divide/{num1}/{num2}",
@@ -63,11 +53,27 @@
     },
     {
       "endpoint": "/functions/percentage/{num}/{percentage}",
-      "method": "GET",
-      "output_encoding": "json",
       "backend": [
         {
           "url_pattern": "/percentage/{num}/{percentage}",
+          "host": ["functions:3005"]
+        }
+      ]
+    },
+    {
+      "endpoint": "/functions/square-root/{num}",
+      "backend": [
+        {
+          "url_pattern": "/sqrt/{num}",
+          "host": ["functions:3005"]
+        }
+      ]
+    },
+    {
+      "endpoint": "/functions/log/{num}",
+      "backend": [
+        {
+          "url_pattern": "/log/{num}",
           "host": ["functions:3005"]
         }
       ]
