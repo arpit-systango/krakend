@@ -1,0 +1,27 @@
+# Files and directories to ignore when building Docker images
+
+# Node.js dependencies
+node_modules
+
+# Editor and IDE files
+.vscode/
+.idea/
+
+# Log files
+*.log
+
+# Build output
+build/
+dist/
+
+# Development and configuration files
+.env
+.env.*
+*.env.local
+.dockerignore
+.git
+.gitignore
+
+# Miscellaneous
+.DS_Store
+Thumbs.db

@@ -1,6 +1,14 @@
 version: '3'
 
 services:
+  auth:
+    build:
+      context: ./service-auth
+    ports:
+      - '3000:3000'
+    networks:
+      - calculator-network
+
   addition:
     build:
       context: ./service-add

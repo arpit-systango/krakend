@@ -22,3 +22,12 @@ Square-root:    http://localhost:8080/functions/square-root/100
 Log:            http://localhost:8080/functions/log/100
 
 Each request will return a JSON response with the calculated result.
+
+# Register a new user
+curl -X POST -H "Content-Type: application/json" -d '{"username": "john", "password": "pass123"}' http://localhost:8080/auth/register
+
+# Login an existing user
+curl -X POST -H "Content-Type: application/json" -d '{"username": "john", "password": "pass123"}' http://localhost:8080/auth/login
+
+# Verify an existing user
+curl -X GET -H "Authorization: Bearer <JWT_TOKEN>" http://localhost:8080/auth/verify

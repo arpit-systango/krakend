@@ -16,6 +16,43 @@
   "output_encoding": "json",
   "endpoints": [
     {
+      "endpoint": "/auth/register",
+      "output_encoding": "no-op",
+      "method": "POST",
+      "backend": [
+        {
+          "url_pattern": "/register",
+          "host": ["auth:3000"],
+          "method": "POST"
+        }
+      ]
+    },
+    {
+      "endpoint": "/auth/login",
+      "output_encoding": "no-op",
+      "method": "POST",
+      "backend": [
+        {
+          "url_pattern": "/login",
+          "host": ["auth:3000"],
+          "method": "POST"
+        }
+      ]
+    },
+    {
+      "endpoint": "/auth/verify",
+      "input_headers": [
+        "Authorization"
+      ],
+      "output_encoding": "no-op",
+      "backend": [
+        {
+          "url_pattern": "/verify",
+          "host": ["auth:3000"]
+        }
+      ]
+    },
+    {
       "endpoint": "/addition/{num1}/{num2}",
       "backend": [
         {
