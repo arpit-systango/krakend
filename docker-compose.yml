@@ -1,0 +1,55 @@
+version: '3'
+
+services:
+  addition:
+    build:
+      context: ./service-add
+    ports:
+      - '3001:3001'
+    networks:
+      - calculator-network
+
+  subtraction:
+    build:
+      context: ./service-sub
+    ports:
+      - '3002:3002'
+    networks:
+      - calculator-network
+
+  multiplication:
+    build:
+      context: ./service-mul
+    ports:
+      - '3003:3003'
+    networks:
+      - calculator-network
+
+  division:
+    build:
+      context: ./service-div
+    ports:
+      - '3004:3004'
+    networks:
+      - calculator-network
+
+  functions:
+    build:
+      context: ./service-functions
+    ports:
+      - '3005:3005'
+    networks:
+      - calculator-network
+
+  krakend:
+    image: devopsfaith/krakend:watch
+    volumes:
+      - ./krakend:/etc/krakend
+    ports:
+      - '8080:8080'
+    command: ["run", "-d", "-c", "/etc/krakend/krakend.json"]
+    networks:
+      - calculator-network
+
+networks:
+  calculator-network:

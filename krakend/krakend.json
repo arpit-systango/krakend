@@ -1,0 +1,76 @@
+{
+  "$schema": "https://www.krakend.io/schema/v3.json",
+  "version": 3,
+  "extra_config": {
+    "telemetry/logging": {
+      "level": "INFO",
+      "prefix": "[KRAKEND]",
+      "syslog": false,
+      "stdout": true
+    }
+  },
+  "name": "KrakenD - API Gateway",
+  "port": 8080,
+  "timeout": "3000ms",
+  "cache_ttl": "300s",
+  "output_encoding": "json",
+  "endpoints": [
+    {
+      "endpoint": "/addition/{num1}/{num2}",
+      "method": "GET",
+      "output_encoding": "json",
+      "backend": [
+        {
+          "url_pattern": "/add/{num1}/{num2}",
+          "method": "GET",
+          "encoding": "json",
+          "host": ["addition:3001"]
+        }
+      ]
+    },
+    {
+      "endpoint": "/subtraction/{num1}/{num2}",
+      "method": "GET",
+      "output_encoding": "json",
+      "backend": [
+        {
+          "url_pattern": "/subtract/{num1}/{num2}",
+          "host": ["subtraction:3002"]
+        }
+      ]
+    },
+    {
+      "endpoint": "/multiplication/{num1}/{num2}",
+      "method": "GET",
+      "output_encoding": "json",
+      "backend": [
+        {
+          "url_pattern": "/multiply/{num1}/{num2}",
+          "host": ["multiplication:3003"]
+        }
+      ]
+    },
+    {
+      "endpoint": "/division/{num1}/{num2}",
+      "method": "GET",
+      "output_encoding": "json",
+      "backend": [
+        {
+          "url_pattern": "/divide/{num1}/{num2}",
+          "host": ["division:3004"]
+        }
+      ]
+    },
+    {
+      "endpoint": "/functions/percentage/{num}/{percentage}",
+      "method": "GET",
+      "output_encoding": "json",
+      "backend": [
+        {
+          "url_pattern": "/percentage/{num}/{percentage}",
+          "host": ["functions:3005"]
+        }
+      ]
+    }
+  ]
+}
