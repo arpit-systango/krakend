@@ -3,7 +3,7 @@
   "version": 3,
   "extra_config": {
     "telemetry/logging": {
-      "level": "INFO",
+      "level": "DEBUG",
       "prefix": "[KRAKEND]",
       "syslog": false,
       "stdout": true
@@ -22,7 +22,9 @@
       "backend": [
         {
           "url_pattern": "/register",
-          "host": ["auth:3000"],
+          "host": [
+            "auth:3000"
+          ],
           "method": "POST"
         }
       ]
@@ -34,7 +36,9 @@
       "backend": [
         {
           "url_pattern": "/login",
-          "host": ["auth:3000"],
+          "host": [
+            "auth:3000"
+          ],
           "method": "POST"
         }
       ]
@@ -48,7 +52,9 @@
       "backend": [
         {
           "url_pattern": "/verify",
-          "host": ["auth:3000"]
+          "host": [
+            "auth:3000"
+          ]
         }
       ]
     },
@@ -57,7 +63,9 @@
       "backend": [
         {
           "url_pattern": "/add/{num1}/{num2}",
-          "host": ["addition:3001"]
+          "host": [
+            "addition:3001"
+          ]
         }
       ]
     },
@@ -66,7 +74,9 @@
       "backend": [
         {
           "url_pattern": "/subtract/{num1}/{num2}",
-          "host": ["subtraction:3002"]
+          "host": [
+            "subtraction:3002"
+          ]
         }
       ]
     },
@@ -75,7 +85,9 @@
       "backend": [
         {
           "url_pattern": "/multiply/{num1}/{num2}",
-          "host": ["multiplication:3003"]
+          "host": [
+            "multiplication:3003"
+          ]
         }
       ]
     },
@@ -84,7 +96,20 @@
       "backend": [
         {
           "url_pattern": "/divide/{num1}/{num2}",
-          "host": ["division:3004"]
+          "host": [
+            "division:3004"
+          ]
+        }
+      ]
+    },
+    {
+      "endpoint": "/functions/greeting",
+      "backend": [
+        {
+          "url_pattern": "/greeting",
+          "host": [
+            "functions:3005"
+          ]
         }
       ]
     },
@@ -93,7 +118,9 @@
       "backend": [
         {
           "url_pattern": "/percentage/{num}/{percentage}",
-          "host": ["functions:3005"]
+          "host": [
+            "functions:3005"
+          ]
         }
       ]
     },
@@ -102,7 +129,9 @@
       "backend": [
         {
           "url_pattern": "/sqrt/{num}",
-          "host": ["functions:3005"]
+          "host": [
+            "functions:3005"
+          ]
         }
       ]
     },
@@ -111,7 +140,9 @@
       "backend": [
         {
           "url_pattern": "/log/{num}",
-          "host": ["functions:3005"]
+          "host": [
+            "functions:3005"
+          ]
         }
       ]
     }

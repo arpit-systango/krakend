@@ -68,6 +68,34 @@ app.get('/log/:num', (req, res) => {
   }
 });
 
+// Express route handler for greeting
+app.get('/greeting', async (req, res) => {
+  try {
+    // Perform requests to individual services for greetings
+    const authResponse = await axios.get('http://auth:3000/greeting');
+    const additionResponse = await axios.get('http://addition:3001/greeting');
+    const subtractionResponse = await axios.get('http://subtraction:3002/greeting');
+    const multiplicationResponse = await axios.get('http://multiplication:3003/greeting');
+    const divisionResponse = await axios.get('http://division:3004/greeting');
+
+    // Combine the greeting messages
+    const combinedGreeting = {
+      auth: authResponse.data.message,
+      addition: additionResponse.data.message,
+      subtraction: subtractionResponse.data.message,
+      multiplication: multiplicationResponse.data.message,
+      division: divisionResponse.data.message,
+    };
+    // Return the combined greeting
+    res.json(combinedGreeting);
+  } catch (error) {
+    // Handle any errors
+    console.error('Error retrieving greetings:', error.message);
+    res.status(500).json({ error: 'Failed to retrieve greetings' });
+  }
+});
+
+
 app.listen(PORT, () => {
   console.log(`service-functions microservice running on port ${PORT}`);
 });

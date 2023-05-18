@@ -4,6 +4,9 @@ docker build -t microservice-name .
 # Run the Docker container
 docker run -p 300X:300X microservice-name
 
+# Run the entire app using docker-compose
+docker-compose up --build
+
 # Remove all containers
 docker container prune -f
 
@@ -20,6 +23,7 @@ Division:       http://localhost:8080/division/100/5
 Percentage:     http://localhost:8080/functions/percentage/100/5
 Square-root:    http://localhost:8080/functions/square-root/100
 Log:            http://localhost:8080/functions/log/100
+greeting:       http://localhost:8080/functions/greeting
 
 Each request will return a JSON response with the calculated result.
 

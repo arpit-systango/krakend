@@ -9,6 +9,12 @@ app.get('/add/:num1/:num2', (req, res) => {
   res.json({ result });
 });
 
+// Express route handler for greeting
+app.get('/greeting', (req, res) => {
+  res.json({ message: 'Welcome to the Addition service!' });
+});
+
+
 app.listen(PORT, () => {
   console.log(`Addition microservice running on port ${PORT}`);
 });

@@ -9,6 +9,7 @@ const users = [];
 
 // Secret key for JWT
 const secretKey = 'c39bXq8K#5eG%tA@9F7^dN1*pm$Rj!2v';
+const kid = 'MDNGMjU2M0U3RERFQUEwOUUzQUMwQ0NBN0Y1RUY0OEIxNTRDM0IxMw';
 
 // Register endpoint
 app.post('/register', (req, res) => {
@@ -38,7 +39,7 @@ app.post('/login', (req, res) => {
   }
 
   // Generate and return a JWT token
-  const token = jwt.sign({ username }, secretKey, { expiresIn: '1h' });
+  const token = jwt.sign({ username }, secretKey, { expiresIn: '1h', header: { kid } });
 
   res.status(200).json({ token });
 });
@@ -61,6 +62,12 @@ app.get('/verify', (req, res) => {
     res.status(200).json({ username });
   });
 });
+
+// Express route handler for greeting
+app.get('/greeting', (req, res) => {
+  res.json({ message: 'Welcome to the Auth service!' });
+});
+
 
 // Start the server
 app.listen(3000, () => {

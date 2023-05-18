@@ -9,6 +9,12 @@ app.get('/divide/:num1/:num2', (req, res) => {
   res.json({ result });
 });
 
+// Express route handler for greeting
+app.get('/greeting', (req, res) => {
+  res.json({ message: 'Welcome to the Division service!' });
+});
+
+
 app.listen(PORT, () => {
   console.log(`Division microservice running on port ${PORT}`);
 });
