@@ -8,6 +8,14 @@ services:
       - '3000:3000'
     networks:
       - calculator-network
+  
+  fake-api:
+    build:
+      context: ./service-fakedata
+    ports:
+      - '4000:4000'
+    networks:
+      - calculator-network
 
   addition:
     build:

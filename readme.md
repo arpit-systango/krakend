@@ -16,6 +16,7 @@ docker image prune -f -a
 # Once Krakend (via docker-compose) is up and running, you can hit the exposed end points as follows
 Assuming you run all four microservices on your local machine, you can then make HTTP requests to perform calculations. For example:
 
+Fake-API:       http://localhost:8080/fake-api/jwk
 Addition:       http://localhost:8080/addition/100/5
 Subtraction:    http://localhost:8080/subtraction/100/5
 Multiplication: http://localhost:8080/multiplication/100/5

@@ -1,5 +1,6 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
+const { v4: uuidv4 } = require('uuid');
 
 const app = express();
 app.use(express.json());
@@ -29,20 +30,20 @@ app.post('/register', (req, res) => {
 });
 
 // Login endpoint
-app.post('/login', (req, res) => {
-  const { username, password } = req.body;
+// app.post('/login', (req, res) => {
+//   const { username, password } = req.body;
 
-  // Find the user with the provided username
-  const user = users.find(user => user.username === username);
-  if (!user || user.password !== password) {
-    return res.status(401).json({ error: 'Invalid credentials' });
-  }
+//   // Find the user with the provided username
+//   const user = users.find(user => user.username === username);
+//   if (!user || user.password !== password) {
+//     return res.status(401).json({ error: 'Invalid credentials' });
+//   }
 
-  // Generate and return a JWT token
-  const token = jwt.sign({ username }, secretKey, { expiresIn: '1h', header: { kid } });
+//   // Generate and return a JWT token
+//   const token = jwt.sign({ username }, secretKey, { expiresIn: '1h', header: { kid } });
 
-  res.status(200).json({ token });
-});
+//   res.status(200).json({ token });
+// });
 
 // Verify endpoint
 app.get('/verify', (req, res) => {
@@ -66,6 +67,39 @@ app.get('/verify', (req, res) => {
 // Express route handler for greeting
 app.get('/greeting', (req, res) => {
   res.json({ message: 'Welcome to the Auth service!' });
+});
+
+// Login endpoint
+app.post('/login', (req, res) => {
+  console.log('Inside login2');
+  const { username, password } = req.body;
+
+  const user = users.find((user) => user.username === username);
+  if (!user || user.password !== password) {
+    return res.status(401).json({ error: 'Invalid credentials' });
+  }
+
+  const jtiAccess = uuidv4(); // Generate a dynamic JTI for access token
+  const jtiRefresh = uuidv4(); // Generate a dynamic JTI for refresh token
+
+  res.status(200).json({
+    access_token: {
+      aud: 'http://api.callahan-marketplace.com',
+      iss: 'https://krakend.io',
+      sub: user.username,
+      jti: jtiAccess, // Use dynamic JTI for access token
+      roles: ['user'],
+      exp: 1735689600,
+    },
+    refresh_token: {
+      aud: 'http://api.callahan-marketplace.com',
+      iss: 'https://krakend.io',
+      sub: user.username,
+      jti: jtiRefresh, // Use dynamic JTI for refresh token
+      exp: 1735689600,
+    },
+    exp: 1735689600,
+  });
 });
 
 

@@ -16,6 +16,17 @@
   "output_encoding": "json",
   "endpoints": [
     {
+      "endpoint": "/fake-api/{json}",
+      "backend": [
+        {
+          "url_pattern": "/fake-api/{json}",
+          "host": [
+            "fake-api:4000"
+          ]
+        }
+      ]
+    },
+    {
       "endpoint": "/auth/register",
       "output_encoding": "no-op",
       "method": "POST",
@@ -31,7 +42,6 @@
     },
     {
       "endpoint": "/auth/login",
-      "output_encoding": "no-op",
       "method": "POST",
       "backend": [
         {
@@ -39,9 +49,26 @@
           "host": [
             "auth:3000"
           ],
-          "method": "POST"
+          "method": "POST",
+          "extra_config": {
+            "backend/http": {
+              "return_error_code": true
+            }
+          }
         }
-      ]
+      ],
+      "extra_config": {
+        "auth/signer": {
+          "alg": "HS256",
+          "jwk_local_path": "/etc/krakend/jwk.json",
+          "keys_to_sign": [
+            "access_token",
+            "refresh_token"
+          ],
+          "kid": "sim2",
+          "disable_jwk_security": true
+        }
+      }
     },
     {
       "endpoint": "/auth/verify",

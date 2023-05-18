@@ -1,0 +1,73 @@
+{
+    "functions": [
+      {
+        "name": "Addition",
+        "description": "Performs addition of two numbers",
+        "endpoint": "/add",
+        "parameters": [
+          {
+            "name": "num1",
+            "type": "number",
+            "description": "The first number"
+          },
+          {
+            "name": "num2",
+            "type": "number",
+            "description": "The second number"
+          }
+        ]
+      },
+      {
+        "name": "Subtraction",
+        "description": "Performs subtraction of two numbers",
+        "endpoint": "/subtract",
+        "parameters": [
+          {
+            "name": "num1",
+            "type": "number",
+            "description": "The first number"
+          },
+          {
+            "name": "num2",
+            "type": "number",
+            "description": "The second number"
+          }
+        ]
+      },
+      {
+        "name": "Multiplication",
+        "description": "Performs multiplication of two numbers",
+        "endpoint": "/multiply",
+        "parameters": [
+          {
+            "name": "num1",
+            "type": "number",
+            "description": "The first number"
+          },
+          {
+            "name": "num2",
+            "type": "number",
+            "description": "The second number"
+          }
+        ]
+      },
+      {
+        "name": "Division",
+        "description": "Performs division of two numbers",
+        "endpoint": "/divide",
+        "parameters": [
+          {
+            "name": "num1",
+            "type": "number",
+            "description": "The first number"
+          },
+          {
+            "name": "num2",
+            "type": "number",
+            "description": "The second number"
+          }
+        ]
+      }
+    ]
+  }
+  
