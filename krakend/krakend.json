@@ -16,17 +16,6 @@
   "output_encoding": "json",
   "endpoints": [
     {
-      "endpoint": "/fake-api/{json}",
-      "backend": [
-        {
-          "url_pattern": "/fake-api/{json}",
-          "host": [
-            "fake-api:4000"
-          ]
-        }
-      ]
-    },
-    {
       "endpoint": "/auth/register",
       "output_encoding": "no-op",
       "method": "POST",
@@ -169,6 +158,41 @@
           "url_pattern": "/log/{num}",
           "host": [
             "functions:3005"
+          ]
+        }
+      ]
+    },
+    {
+      "endpoint": "/fake-api/{json}",
+      "extra_config": {
+        "auth/validator": {
+          "alg": "HS256",
+          "audience": [
+            "http://api.callahan-marketplace.com"
+          ],
+          "roles": [
+            "user",
+            "admin"
+          ],
+          "jwk_local_path": "/etc/krakend/jwk.json",
+          "disable_jwk_security": true,
+          "propagate_claims": [
+            [
+              "sub",
+              "x-user"
+            ],
+            [
+              "role",
+              "x-role"
+            ]
+          ]
+        }
+      },
+      "backend": [
+        {
+          "url_pattern": "/fake-api/{json}",
+          "host": [
+            "fake-api:4000"
           ]
         }
       ]

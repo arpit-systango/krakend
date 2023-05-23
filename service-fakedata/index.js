@@ -6,6 +6,9 @@ const app = express();
 
 // Set the API endpoint
 app.get('/fake-api/:location', (req, res) => {
+  for (const header in req.headers) {
+    console.log(`${header}: ${req.headers[header]}`);
+  }
   const location = req.params.location;
   const filePath = path.join(__dirname, 'data', `${location}.json`);
 

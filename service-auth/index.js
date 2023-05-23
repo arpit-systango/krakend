@@ -29,22 +29,6 @@ app.post('/register', (req, res) => {
   res.status(201).json({ message: 'User registered successfully' });
 });
 
-// Login endpoint
-// app.post('/login', (req, res) => {
-//   const { username, password } = req.body;
-
-//   // Find the user with the provided username
-//   const user = users.find(user => user.username === username);
-//   if (!user || user.password !== password) {
-//     return res.status(401).json({ error: 'Invalid credentials' });
-//   }
-
-//   // Generate and return a JWT token
-//   const token = jwt.sign({ username }, secretKey, { expiresIn: '1h', header: { kid } });
-
-//   res.status(200).json({ token });
-// });
-
 // Verify endpoint
 app.get('/verify', (req, res) => {
   const token = req.headers.authorization?.split(' ')[1];
@@ -71,7 +55,6 @@ app.get('/greeting', (req, res) => {
 
 // Login endpoint
 app.post('/login', (req, res) => {
-  console.log('Inside login2');
   const { username, password } = req.body;
 
   const user = users.find((user) => user.username === username);
