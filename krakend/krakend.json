@@ -164,6 +164,10 @@
     },
     {
       "endpoint": "/fake-api/{json}",
+      "input_headers": [
+        "x-user",
+        "x-role"
+      ],
       "extra_config": {
         "auth/validator": {
           "alg": "HS256",
@@ -182,7 +186,7 @@
               "x-user"
             ],
             [
-              "role",
+              "roles",
               "x-role"
             ]
           ]
