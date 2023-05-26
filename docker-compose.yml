@@ -58,12 +58,20 @@ services:
       - calculator-network
 
   krakend:
-    image: devopsfaith/krakend:watch
+    build:
+      context: ./krakend
     volumes:
       - ./krakend:/etc/krakend
     ports:
       - '8080:8080'
-    command: ["run", "-d", "-c", "/etc/krakend/krakend.json"]
+    environment:
+      - FC_ENABLE=1
+      - FC_PARTIALS=config/partials
+      - FC_SETTINGS=config/settings/dev
+      - FC_TEMPLATES=config/templates
+      - FC_OUT=out.json
+      - SERVICE_NAME=KrakenD API Gateway
+    command: ["run", "-dc", "krakend.tmpl", ""]
     networks:
       - calculator-network
 

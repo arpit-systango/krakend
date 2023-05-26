@@ -1,0 +1,44 @@
+{
+    "endpoint": "/functions/greeting",
+    "backend": [
+        {
+            "url_pattern": "/greeting",
+            "host": [
+                "functions:3005"
+            ]
+        }
+    ]
+},
+{
+    "endpoint": "/functions/percentage/{num}/{percentage}",
+    "backend": [
+        {
+            "url_pattern": "/percentage/{num}/{percentage}",
+            "host": [
+                "functions:3005"
+            ]
+        }
+    ]
+},
+{
+    "endpoint": "/functions/square-root/{num}",
+    "backend": [
+        {
+            "url_pattern": "/sqrt/{num}",
+            "host": [
+                "functions:3005"
+            ]
+        }
+    ]
+},
+{
+    "endpoint": "/functions/log/{num}",
+    "backend": [
+        {
+            "url_pattern": "/log/{num}",
+            "host": [
+                "functions:3005"
+            ]
+        }
+    ]
+}

@@ -55,3 +55,10 @@ curl -X GET -H "Authorization: Bearer <JWT_TOKEN>" http://localhost:8080/auth/ve
 ```
 curl --location 'http://localhost:8080/fake-api/protected' --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsImtpZCI6InNpbTIifQ.eyJhdWQiOiJodHRwOi8vYXBpLmNhbGxhaGFuLW1hcmtldHBsYWNlLmNvbSIsImV4cCI6MTczNTY4OTYwMCwiaXNzIjoiaHR0cHM6Ly9rcmFrZW5kLmlvIiwianRpIjoiM2U5OWIyNWUtNWUwMi00ZTUyLWJlMzMtY2M4ZDdmZjkwZWY3Iiwicm9sZXMiOlsidXNlciJdLCJzdWIiOiJqb2huIn0.gflGpRJeYZbJ3m3SbhdrkCeeI60oP0XbtCgChQNe95Q'
 ```
+
+# command to generate endpoint.tmpl
+```
+tree template -J -P "ep_*.tmpl" -I "endpoints.tmpl" \
+| jq -r ' ( .[0].contents[].name | "{{ template \"\(.)\" . }}," )' \
+| sed '$s/,$//' > endpoints.tmpl
+```

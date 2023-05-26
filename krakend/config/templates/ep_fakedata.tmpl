@@ -1,0 +1,17 @@
+{
+    "endpoint": "/fake-api/{json}",
+    "input_headers": [
+        "x-user",
+        "x-role"
+    ],
+    {{ include "jwt_user_exconfig.tmpl"}}
+    ,
+    "backend": [
+        {
+            "url_pattern": "/fake-api/{json}",
+            "host": [
+                "fake-api:4000"
+            ]
+        }
+    ]
+}

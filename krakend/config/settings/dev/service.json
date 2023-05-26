@@ -1,0 +1,15 @@
+{
+    "port": 8080,
+    "environment": "DEVELOPMENT",
+    "extra_config": {
+        "telemetry/logging": {
+            "level": "DEBUG",
+            "prefix": "[KRAKEND]",
+            "syslog": false,
+            "stdout": true
+        }
+    },
+    "timeout": "3000ms",
+    "cache_ttl": "300s",
+    "output_encoding": "json"
+}
